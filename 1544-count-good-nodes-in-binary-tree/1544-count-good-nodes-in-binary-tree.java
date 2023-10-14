@@ -15,9 +15,6 @@
  */
 class Solution {
     public int goodNodes(TreeNode root) {
-        if(root == null){
-            return 0;
-        }
         int max= root.val;
         return dfs(root, max);
 
