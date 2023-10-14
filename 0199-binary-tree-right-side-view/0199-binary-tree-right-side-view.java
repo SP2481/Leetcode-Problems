@@ -20,8 +20,8 @@ class Solution {
             return arr;
         }
         //BFS
-        Queue<TreeNode> q = new ArrayDeque<>();
-        q.add(root);
+        Queue<TreeNode> q = new LinkedList<>();
+        q.offer(root);
         while(!q.isEmpty()){
             int size = q.size();
             for(int i =0; i< size; i++){
@@ -30,10 +30,10 @@ class Solution {
                     arr.add(curr.val);
                 }
                 if(curr.left != null){
-                    q.add(curr.left);
+                    q.offer(curr.left);
                 }
                 if(curr.right != null){
-                    q.add(curr.right);
+                    q.offer(curr.right);
                 }
             }
         }
