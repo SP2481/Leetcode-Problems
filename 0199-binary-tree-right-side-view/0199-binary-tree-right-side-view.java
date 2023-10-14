@@ -19,24 +19,16 @@ class Solution {
         if(root == null){
             return arr;
         }
-        //BFS
-        Queue<TreeNode> q = new LinkedList<>();
-        q.offer(root);
-        while(!q.isEmpty()){
-            int size = q.size();
-            for(int i =0; i< size; i++){
-                TreeNode curr = q.poll();
-                if(i == size -1){
-                    arr.add(curr.val);
-                }
-                if(curr.left != null){
-                    q.offer(curr.left);
-                }
-                if(curr.right != null){
-                    q.offer(curr.right);
-                }
-            }
-        }
+        rightside(root, arr, 0);
         return arr;
+
+    }
+    private void rightside(TreeNode root, List<Integer> ans, int i){
+        if(root  == null) return;
+        if(i == ans.size()){
+            ans.add(root.val);
+        }
+        rightside(root.right, ans, i+1);
+        rightside(root.left, ans, i+1);
     }
 }
