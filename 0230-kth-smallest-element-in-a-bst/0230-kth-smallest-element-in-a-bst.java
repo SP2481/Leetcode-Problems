@@ -16,17 +16,23 @@
 class Solution {
     
     public int kthSmallest(TreeNode root, int k) {
-        if(root == null){return 0;}
-        ArrayList<Integer> arr = new ArrayList<>();
-        List<Integer> result = inorderTraversal(root, arr);
-        return result.get(k - 1);
-    }
-    private ArrayList<Integer> inorderTraversal(TreeNode node, ArrayList<Integer> arr){
-        if(node != null){
-            inorderTraversal(node.left, arr);
-            arr.add(node.val);
-            inorderTraversal(node.right, arr);
+        //More Optimised
+        Stack<TreeNode> stk = new Stack<>();
+        TreeNode curr = root;
+        while (curr != null || !stk.isEmpty()){
+            while(curr != null){
+                stk.push(curr);
+                curr = curr.left;
+            }
+
+            curr = stk.pop();
+            k--;
+            if(k == 0){
+                return curr.val;
+            }
+            curr = curr.right;
         }
-        return arr;
+        return -1;
     }
+    
 }
