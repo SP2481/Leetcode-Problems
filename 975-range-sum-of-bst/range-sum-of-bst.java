@@ -18,17 +18,17 @@ class Solution {
         if(root == null){
             return 0;
         }
-        
-        return helper(root, low, high);
-    }
-    private int helper(TreeNode root, int l, int h){
-        if(root == null)return 0;
-        int count =0;
-        if(root.val >= l && root.val <= h){
-            count+=root.val;
+        int sum =0;
+        if (root.val >= low && root.val <= high) {
+            sum += root.val;
         }
-        count+=helper(root.left, l, h);
-        count+=helper(root.right, l, h);
-        return count;
+        if (root.val > low) {
+            sum += rangeSumBST(root.left, low, high);
+        }
+        if (root.val < high) {
+            sum += rangeSumBST(root.right, low, high);
+        }
+        return sum;
     }
 }
+    
